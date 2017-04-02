@@ -1,0 +1,41 @@
+---
+#Update apt packages list
+- name: Update apt (apt-get update)
+  apt: update_cache=yes
+
+#Upgrade packages
+- name: Upgrade packages (apt-get upgrade)
+  apt: upgrade=dist
+
+#Ensure sudo is installed
+- name: Install sudo
+  apt:
+    pkg: sudo
+    state: latest
+
+#Install base packages
+- name: Install base packages
+  apt:
+    pkg: "{{ item }}"
+    state: latest
+  with_items:
+    - wget
+    - vim
+    - git
+    - htop
+    - curl
+
+#Changing timezone
+- name: Set Time Zone
+  copy: content='America/Sao_Paulo'
+        dest=/etc/timezone
+        owner=root
+        group=root
+        mode=0644
+        backup=yes
+
+- command: dpkg-reconfigure --frontend noninteractive tzdata
+
+#Changing timezone
+- command: sed -i "/# pt_BR.UTF-8 UTF-8/c\pt_BR.UTF-8 UTF-8" /etc/locale.gen
+- command: dpkg-reconfigure --frontend noninteractive locales

@@ -1,0 +1,29 @@
+---
+#Install apt-transport-https to add docker repository
+- name: Make sure apt-transport-https is installed
+  apt:
+    pkg: apt-transport-https
+    state: installed
+
+#Install ca-certificates to add docker repository
+- name: Make sure ca-certificates is installed
+  apt: 
+    pkg: ca-certificates
+    state: installed
+
+#Add docker repository and run a apt-get update
+- name: Add Docker repository and update apt cache
+  apt_repository:
+    repo: 'deb https://apt.dockerproject.org/repo debian-jessie main'
+    update_cache: yes
+    state: present
+
+#Add docker repository key
+- name: Add Docker repository key
+  shell: curl -fsSL https://get.docker.com/gpg | sudo apt-key add -
+#Install docker package
+- name: Install docker package
+  apt:
+    pkg: docker-engine
+    state: latest
+    force: yes

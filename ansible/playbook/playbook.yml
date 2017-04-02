@@ -1,0 +1,15 @@
+---
+##
+## Install base configuration
+##
+
+- name: Install minimal configuration
+  hosts: all
+  connection: local
+  sudo: yes
+
+
+  roles:
+    - base
+    - userconfig
+    - docker
