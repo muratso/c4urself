@@ -14,5 +14,7 @@ ADD ./dockerutil/start.sh /start.sh
 ADD ./automated /automated
 RUN chmod 755 /start.sh
 
+RUN cd /automated && bundle install
+
 ENTRYPOINT ["/bin/bash","/start.sh"] 
 
