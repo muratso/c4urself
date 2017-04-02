@@ -1,11 +1,11 @@
-#C4URSELF Project
+# C4URSELF Project
 
-##Instructions (Linux environment)
+## Instructions (Linux environment)
 
 * Clone this project on a linux machine
 * Execute the run.sh and see the magic happens.
 
-##Instructions (Any other environment)
+## Instructions (Any other environment)
 * Make sure that you have installed ruby 2.3
 * Make sure that you have in your PATH variable environment the path to chromedriver or phantomjs
 * On the docker/testsuite/automated directory execute the command `bundle install`
